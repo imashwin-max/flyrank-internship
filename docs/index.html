@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicting Content Decay - Ashwin Max</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #171717; max-width: 800px; margin: 0 auto; padding: 2rem; background-color: #FAFAFA; }
+        h1, h2 { color: #171717; border-bottom: 2px solid #2563EB; padding-bottom: 0.5rem; margin-top: 2rem; font-family: 'Outfit', sans-serif; }
+        h1 { border-bottom: 4px solid #2563EB; }
+        a { color: #2563EB; text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; color: #10B981; }
+        .highlight { background-color: #e8f0fe; padding: 1rem; border-left: 4px solid #2563EB; border-radius: 4px; margin: 1.5rem 0; }
+    </style>
+</head>
+<body>
+    <h1>Predicting Content Decay: A Machine Learning Approach</h1>
+
+    <div class="highlight">
+        <h2>Abstract</h2>
+        <p>This project builds a machine learning scoring system to identify pages showing strong signals of traffic decline. Using anonymized historical search data from FlyRank, I framed the problem as a scoring and ranking task. The resulting Random Forest model successfully learned non-linear decay patterns, outperforming hardcoded heuristic rules (~88% vs 48% Precision@50).</p>
+    </div>
+
+    <h2>1. Introduction / Problem Statement</h2>
+    <p>Websites accumulate massive amounts of content, and over time, search performance naturally decays. Editorial teams have limited capacity and must decide: <em>Which existing page should we rewrite or update next to defend our traffic?</em> This project provides a directional, decision-support tool that ranks pages by their likelihood of decay.</p>
+
+    <h2>2. Methodology</h2>
+    <ul>
+        <li><strong>Task Definition:</strong> Scoring and Ranking via Binary Classification.</li>
+        <li><strong>Target Proxy:</strong> Defined a page as "decaying" if its observed trend was negative.</li>
+        <li><strong>Features:</strong> <code>content_age_days</code>, <code>impressions_90d</code>, <code>avg_position</code>, <code>ctr</code>.</li>
+        <li><strong>Model:</strong> Random Forest Classifier to capture non-linear relationships.</li>
+    </ul>
+
+    <h2>3. Results & Reproducibility</h2>
+    <p>The model provides a much denser concentration of true declining pages at the top of the queue compared to a standard human rule. The full codebase, including data contracts, signal audits, and the capstone modeling notebook, is publicly available below.</p>
+    
+    <p><strong>GitHub Repository:</strong> <a href="https://github.com/imashwin-max/flyrank-internship" target="_blank">View the Code Here</a></p>
+
+</body>
+</html>
