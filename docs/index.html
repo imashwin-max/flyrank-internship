@@ -12,8 +12,11 @@
         a { color: #2563EB; text-decoration: none; font-weight: bold; }
         a:hover { text-decoration: underline; color: #10B981; }
         .highlight { background-color: #e8f0fe; padding: 1rem; border-left: 4px solid #2563EB; border-radius: 4px; margin: 1.5rem 0; }
-        .cta-button { display: inline-block; background-color: #2563EB; color: #FAFAFA; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 1rem; }
+        .cta-button { display: inline-block; background-color: #2563EB; color: #FAFAFA; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold; margin-top: 1rem; border: none; cursor: pointer; font-size: 1rem;}
         .cta-button:hover { background-color: #10B981; color: #FAFAFA; text-decoration: none; }
+        .contact-form { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 2rem; border: 1px solid #e5e7eb;}
+        .contact-form input, .contact-form textarea { width: 100%; padding: 10px; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: 'Inter', sans-serif;}
+        .success-msg { display: none; color: #10B981; font-weight: bold; margin-top: 1rem; }
     </style>
 </head>
 <body>
@@ -39,7 +42,51 @@
     <h2>3. Results & Reproducibility</h2>
     <p>The model provides a much denser concentration of true declining pages at the top of the queue compared to a standard human rule. The full codebase, including data contracts, signal audits, and the capstone modeling notebook, is publicly available below.</p>
     
-    <a href="https://github.com/imashwin-max/flyrank-internship" target="_blank" class="cta-button">View the Code on GitHub</a>
+    <a href="https://github.com/imashwin-max/flyrank-internship" target="_blank" class="cta-button" style="margin-bottom: 2rem;">View the Code on GitHub</a>
 
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a296896b5b0d5cb8',t:'MTc4NjQ0MzkzMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    <!-- THE DYNAMIC FEATURE -->
+    <div class="contact-form">
+        <h2 style="margin-top: 0; border: none; padding: 0;">Get in Touch</h2>
+        <p>Interested in my ML workflow? Send me a message below.</p>
+        <form action="https://formspree.io/f/mqazqjlk" method="POST" id="my-form">
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required placeholder="name@example.com">
+            
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Hi Ashwin..."></textarea>
+            
+            <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+            <p class="success-msg" id="my-form-status">Thanks for your message! I'll get back to you soon.</p>
+        </form>
+    </div>
+
+    <!-- Script to handle form submission without leaving the page -->
+    <script>
+        var form = document.getElementById("my-form");
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("my-form-status");
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    status.style.display = "block";
+                    form.reset()
+                } else {
+                    status.style.display = "block";
+                    status.style.color = "red";
+                    status.innerHTML = "Oops! There was a problem submitting your form";
+                }
+            }).catch(error => {
+                status.style.display = "block";
+                status.style.color = "red";
+                status.innerHTML = "Oops! There was a problem submitting your form";
+            });
+        }
+        form.addEventListener("submit", handleSubmit)
+    </script>
+</body>
 </html>
